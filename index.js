@@ -13,11 +13,19 @@ const linebotParser = bot.parser();
 
 //因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
 var server = app.listen(process.env.PORT || 8080, function() {
-  var port = server.address().port;
-  console.log("App now running on port", port);
+	var port = server.address().port;
+	console.log("App now running on port", port);
 });
 
 bot.on('message', function(event) {
-  console.log(event); //把收到訊息的 event 印出來看看
+	// console.log(event); //把收到訊息的 event 印出來看看
+	if(event.message.type == 'text'){
+		let msg = event.message.text;
+		event.reply(msg);.then(function(data){
+			console.log(msg);
+		}).catch(function(err){
+			console.log("ERROR_的拉");
+		});
+	}
 });
 app.post('/', linebotParser);
