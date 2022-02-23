@@ -1,0 +1,15 @@
+{
+  "name": "jsserver",
+  "version": "1.0.0",
+  "description": "this is description _test_",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "linebot": "^1.6.1"
+  }
+}
