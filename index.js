@@ -21,7 +21,7 @@ bot.on('message', function(event) {
 	// console.log(event); //把收到訊息的 event 印出來看看
 	if(event.message.type == 'text'){
 		let msg = event.message.text;
-		event.reply(msg);.then(function(data){
+		event.reply(msg).then(function(data){
 			console.log(msg);
 		}).catch(function(err){
 			console.log("ERROR_的拉");
