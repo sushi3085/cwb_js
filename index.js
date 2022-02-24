@@ -41,8 +41,8 @@ function replyMessage(event) {
 			response += "CONGRATULATIONS";
 			response += "ANSWER HAS BEEN RENEWED";
 		}
+		event.reply(response);
 	}
-	event.reply(response);
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
 	}
