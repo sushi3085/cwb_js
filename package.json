@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
+    "get-json": "^1.0.1",
     "linebot": "^1.6.1"
   }
 }
