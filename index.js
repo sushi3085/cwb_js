@@ -35,6 +35,11 @@ function replyMessage(event) {
 			if(msg[2] == answer[1]) A++;
 			event.reply(`${A}A, ${B}B`);
 		}
+		if(A==2){
+			event.reply("CONGRATULATIONS");
+			renewAnswer();
+			event.reply("ANSWER HAS BEEN RENEWED");
+		}
 	}
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
