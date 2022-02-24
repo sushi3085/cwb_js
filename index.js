@@ -28,7 +28,9 @@ function replyMessage(event) {
 		// 	});
 		let A = 0;
 		let B = 0;
-		if(msg[0] == "猜"){
+		if(msg.length == 2){
+			event.reply("猜");
+			event.reply("猜");
 			if(msg[1] == answer[0]) A++;
 			if(msg[1] == answer[1]) B++;
 			if(msg[2] == answer[0]) B++;
@@ -36,8 +38,8 @@ function replyMessage(event) {
 			event.reply(`${A}A, ${B}B`);
 		}
 		if(A==2){
-			event.reply("CONGRATULATIONS");
 			renewAnswer();
+			event.reply("CONGRATULATIONS");
 			event.reply("ANSWER HAS BEEN RENEWED");
 		}
 	}
