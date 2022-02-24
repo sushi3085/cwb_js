@@ -12,23 +12,33 @@ var bot = linebot({
 const app = express();
 const linebotParser = bot.parser();
 
-//因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
-app.listen(process.env.PORT || 8080);
-
-bot.on('message', function (event) {
+function replyMessage(event) {
+	// 將文字與影像訊息分開處理
 	// console.log(event); //把收到訊息的 event 印出來看看
 	if (event.message.type == 'text') {
 		let msg = event.message.text;
 
-		event.reply(msg).
+		event.reply(msg+server.address().port).
 			then(function (data) {
 				console.log(msg);
 			}).catch(function (err) {
 				console.log("ERROR_的拉");
 			});
 	}
-	else {
+	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
 	}
-});
+}
+
+function initBot() {
+	//因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
+	app.listen(process.env.PORT || 8080);
+
+	bot.on('message', replyMessage);
+}
+
+initBot();
 app.post('/', linebotParser);
+
+
+// 爬資料 remember to set time interval
