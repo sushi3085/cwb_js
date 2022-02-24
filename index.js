@@ -11,6 +11,8 @@ var bot = linebot({
 
 const app = express();
 const linebotParser = bot.parser();
+var timer; // interval object in order to count down;
+var answer = 00;
 
 function replyMessage(event) {
 	// 將文字與影像訊息分開處理
@@ -18,12 +20,21 @@ function replyMessage(event) {
 	if (event.message.type == 'text') {
 		let msg = event.message.text;
 
-		event.reply(msg+server.address().port).
-			then(function (data) {
-				console.log(msg);
-			}).catch(function (err) {
-				console.log("ERROR_的拉");
-			});
+		// event.reply(msg).
+		// 	then(function (data) {
+		// 		console.log(msg);
+		// 	}).catch(function (err) {
+		// 		console.log("ERROR_的拉");
+		// 	});
+		let A = 0;
+		let B = 0;
+		if(msg[0] == "猜"){
+			if(msg[1] == answer[0]) A++;
+			if(msg[1] == answer[1]) B++;
+			if(msg[2] == answer[0]) B++;
+			if(msg[2] == answer[1]) A++;
+			event.reply(`${A}A, ${B}B`);
+		}
 	}
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
@@ -37,8 +48,32 @@ function initBot() {
 	bot.on('message', replyMessage);
 }
 
+function _getJSON() {
+	clearTimeout(timer);
+	getJSON('http://opendata2.epa.gov.tw/AQX.json', function (error, response) {
+		response.forEach(function (e, i) {
+			pm[i] = [];
+			pm[i][0] = e.SiteName;
+			pm[i][1] = e['PM2.5'] * 1;
+			pm[i][2] = e.PM10 * 1;
+		});
+	});
+	timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
+}
+
+function renewAnswer(){
+	clearTimeout(timer);
+	answer = Math.round(Math.random()*10)*10 + Math.round(Math.random()*10);
+	answer = answer + "";
+	timer = setInterval(renewAnswer, 5*60*1000);
+}
+
+
+
 initBot();
 app.post('/', linebotParser);
+// _getJSON();
+renewAnswer();
 
 
 // 爬資料 remember to set time interval
