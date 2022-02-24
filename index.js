@@ -35,7 +35,8 @@ function replyMessage(event) {
 			if(msg[1] == answer[1]) B++;
 			if(msg[2] == answer[0]) B++;
 			if(msg[2] == answer[1]) A++;
-			response += `${A}A, ${B}B`
+			console.log(A+"A, "+B+"B");
+			response += `${A}A, ${B}B`;
 		}
 		if(A==2){
 			renewAnswer();
