@@ -29,6 +29,7 @@ function replyMessage(event) {
 		// 	});
 		let A = 0;
 		let B = 0;
+		console.log(msg.length);
 		if(msg.length == 2){
 			if(msg[1] == answer[0]) A++;
 			if(msg[1] == answer[1]) B++;
