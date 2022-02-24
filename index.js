@@ -31,11 +31,10 @@ function replyMessage(event) {
 		let B = 0;
 		console.log(msg.length);
 		if(msg.length == 2){
-			if(msg[1] == answer[0]) A++;
-			if(msg[1] == answer[1]) B++;
-			if(msg[2] == answer[0]) B++;
-			if(msg[2] == answer[1]) A++;
-			console.log(A+"A, "+B+"B");
+			if(msg[0] == answer[0]) A++;
+			if(msg[0] == answer[1]) B++;
+			if(msg[1] == answer[0]) B++;
+			if(msg[1] == answer[1]) A++;
 			response += `${A}A, ${B}B`;
 		}
 		if(A==2){
