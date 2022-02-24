@@ -30,17 +30,35 @@ function replyMessage(event) {
 		let A = 0;
 		let B = 0;
 		console.log(msg.length);
-		if(msg.length == 2){
-			if(msg[0] == answer[0]) A++;
-			if(msg[0] == answer[1]) B++;
-			if(msg[1] == answer[0]) B++;
-			if(msg[1] == answer[1]) A++;
+		if (msg.length == 2) {
+			if (msg[0] == answer[0]) A++;
+			if (msg[0] == answer[1]) B++;
+			if (msg[1] == answer[0]) B++;
+			if (msg[1] == answer[1]) A++;
 			response += `${A}A, ${B}B`;
 		}
-		if(A==2){
+		if (A == 2) {
 			renewAnswer();
-			response += "CONGRATULATIONS";
-			response += "ANSWER HAS BEEN RENEWED";
+			response += "\nCONGRATULATIONS";
+			response += "\nANSWER HAS BEEN RENEWED";
+		}
+		// item
+		response = {
+			"type": "bubble", // ①
+			"body": { // ②
+				"type": "box", // ③
+				"layout": "horizontal", // ④
+				"contents": [ // ⑤
+					{
+						"type": "text", // ⑥
+						"text": "Hello,"
+					},
+					{
+						"type": "text", // ⑥
+						"text": "World!"
+					}
+				]
+			}
 		}
 		event.reply(response);
 	}
@@ -69,11 +87,11 @@ function _getJSON() {
 	timer = setInterval(_getJSON, 1800000); //每半小時抓取一次新資料
 }
 
-function renewAnswer(){
+function renewAnswer() {
 	clearTimeout(timer);
-	answer = Math.round(Math.random()*10)*10 + Math.round(Math.random()*10);
+	answer = Math.round(Math.random() * 10) * 10 + Math.round(Math.random() * 10);
 	answer = answer + "";
-	timer = setInterval(renewAnswer, 5*60*1000);
+	timer = setInterval(renewAnswer, 5 * 60 * 1000);
 }
 
 
