@@ -19,6 +19,7 @@ function replyMessage(event) {
 	// console.log(event); //把收到訊息的 event 印出來看看
 	if (event.message.type == 'text') {
 		let msg = event.message.text;
+		let response = "";
 
 		// event.reply(msg).
 		// 	then(function (data) {
@@ -29,20 +30,19 @@ function replyMessage(event) {
 		let A = 0;
 		let B = 0;
 		if(msg.length == 2){
-			event.reply("猜");
-			event.reply("猜");
 			if(msg[1] == answer[0]) A++;
 			if(msg[1] == answer[1]) B++;
 			if(msg[2] == answer[0]) B++;
 			if(msg[2] == answer[1]) A++;
-			event.reply(`${A}A, ${B}B`);
+			response += `${A}A, ${B}B`
 		}
 		if(A==2){
 			renewAnswer();
-			event.reply("CONGRATULATIONS");
-			event.reply("ANSWER HAS BEEN RENEWED");
+			response += "CONGRATULATIONS";
+			response += "ANSWER HAS BEEN RENEWED";
 		}
 	}
+	event.reply(response);
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
 	}
