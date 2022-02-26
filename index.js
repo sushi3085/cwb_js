@@ -15,7 +15,6 @@ var timer; // interval object in order to count down;
 var answer = 00;
 
 var massgg = {
-	"replyToken": event.reply_token,
 	"messages": [
 		{
 			"type": "flex",
