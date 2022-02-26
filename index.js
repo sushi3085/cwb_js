@@ -60,7 +60,7 @@ function replyMessage(event) {
 				]
 			}
 		}
-		event.replyMessage(response);
+		event.reply(['asdasa','alsksjjsjsjjj']);
 	}
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
