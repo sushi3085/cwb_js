@@ -15,7 +15,7 @@ const linebotParser = bot.parser();
 var timer; // interval object in order to count down;
 var answer = 00;
 
-var sixtyMinCountDown = 60;
+var sixtyMinCountDown = 3;
 var users = []
 
 
@@ -81,7 +81,7 @@ function _getJSON() {
 		let result = records['weatherElement']['time']['dataTime']+"嘉義市	西區北新里海口寮路56號= "+records['weatherElement']['location'][0]['value']+", locationCode:"+records['weatherElement']['location'][0]['locationCode'];
 		console.log(result);
 		if(--sixtyMinCountDown === 0){
-			sixtyMinCountDown = 60;
+			sixtyMinCountDown = 30;
 			users.forEach(e =>{
 				bot.push(e, result);
 			});
