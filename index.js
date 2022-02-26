@@ -15,7 +15,7 @@ const linebotParser = bot.parser();
 var timer; // interval object in order to count down;
 var answer = 00;
 
-var sixtyMinCountDown = 3;
+var sixtyMinCountDown = 1;
 var users = []
 
 
@@ -46,9 +46,11 @@ function replyMessage(event) {
 			response += "\nCONGRATULATIONS";
 			response += "\nANSWER HAS BEEN RENEWED";
 		}
-		if(msg.length === 3){
+		if (msg.length === 3) {
 			event.reply(MSGS.coffee);
-			users.push(event.source.userId);
+			users.push(event.source.userId)
+				.then()
+				.catch(err => console.log(err));
 		}
 	}
 	if (event.message.type == 'image') {
@@ -78,11 +80,11 @@ function _getJSON() {
 		// 	pm[i][2] = e.PM10 * 1;
 		// });
 		let records = response['records'];
-		let result = records['weatherElement']['time']['dataTime']+"嘉義市	西區北新里海口寮路56號= "+records['weatherElement']['location'][0]['value']+", locationCode:"+records['weatherElement']['location'][0]['locationCode'];
+		let result = records['weatherElement']['time']['dataTime'] + "嘉義市	西區北新里海口寮路56號= " + records['weatherElement']['location'][0]['value'] + ", locationCode:" + records['weatherElement']['location'][0]['locationCode'];
 		console.log(result);
-		if(--sixtyMinCountDown === 0){
+		if (--sixtyMinCountDown === 0) {
 			sixtyMinCountDown = 30;
-			users.forEach(e =>{
+			users.forEach(e => {
 				bot.push(e, result);
 			});
 		}
