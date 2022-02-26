@@ -23,6 +23,7 @@ module.exports = {
 
     coffee: {
         "type": "flex",
+        "altText": "this is a test",
         "contents": {
             "type": "bubble",
             "hero": {
