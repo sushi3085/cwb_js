@@ -1,6 +1,7 @@
 var linebot = require('linebot')
 var express = require('express')
 var getJSON = require('get-json')
+const MSGS = require('./msgs.js');
 
 var bot = linebot({
 	"channelId": "1656918423",
@@ -14,41 +15,6 @@ const linebotParser = bot.parser();
 var timer; // interval object in order to count down;
 var answer = 00;
 
-var massgg = {
-	"type": "flex",
-	"altText": "Flex Message",
-	"contents": {
-		"type": "carousel",
-		"contents": [
-			{
-				"type": "bubble",
-				"body": {
-					"type": "box",
-					"layout": "vertical",
-					"contents": [
-						{
-							"type": "text",
-							"text": "First bubble"
-						}
-					]
-				}
-			},
-			{
-				"type": "bubble",
-				"body": {
-					"type": "box",
-					"layout": "vertical",
-					"contents": [
-						{
-							"type": "text",
-							"text": "Second bubble"
-						}
-					]
-				}
-			}
-		]
-	}
-}
 
 function replyMessage(event) {
 	// 將文字與影像訊息分開處理
@@ -77,13 +43,13 @@ function replyMessage(event) {
 			response += "\nCONGRATULATIONS";
 			response += "\nANSWER HAS BEEN RENEWED";
 		}
-		event.reply(massgg)
+		event.reply(MSGS.massgg)
 		.then((data)=>{console.log(data)})
 		.catch((err)=>{console.log(err)});
 	}
 	if (event.message.type == 'image') {
 		// event.reply("窩看不懂");
-		event.reply(massgg)
+		event.reply([MSGS.massgg, MSGS.bubble])
 		.then((data)=>{console.log(data)})
 		.catch((err)=>{console.log(err)});
 	}
