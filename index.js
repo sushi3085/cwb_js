@@ -43,13 +43,13 @@ function replyMessage(event) {
 			response += "\nCONGRATULATIONS";
 			response += "\nANSWER HAS BEEN RENEWED";
 		}
-		event.reply(MSGS.massgg)
+		event.reply(MSGS.coffee)
 		.then((data)=>{console.log(data)})
 		.catch((err)=>{console.log(err)});
 	}
 	if (event.message.type == 'image') {
 		// event.reply("窩看不懂");
-		event.reply([MSGS.massgg, MSGS.bubble])
+		event.reply([MSGS.coffee, MSGS.bubble])
 		.then((data)=>{console.log(data)})
 		.catch((err)=>{console.log(err)});
 	}
