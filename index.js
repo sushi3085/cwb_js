@@ -15,43 +15,39 @@ var timer; // interval object in order to count down;
 var answer = 00;
 
 var massgg = {
-	"messages": [
-		{
-			"type": "flex",
-			"altText": "Flex Message",
-			"contents": {
-				"type": "carousel",
-				"contents": [
-					{
-						"type": "bubble",
-						"body": {
-							"type": "box",
-							"layout": "vertical",
-							"contents": [
-								{
-									"type": "text",
-									"text": "First bubble"
-								}
-							]
+	"type": "flex",
+	"altText": "Flex Message",
+	"contents": {
+		"type": "carousel",
+		"contents": [
+			{
+				"type": "bubble",
+				"body": {
+					"type": "box",
+					"layout": "vertical",
+					"contents": [
+						{
+							"type": "text",
+							"text": "First bubble"
 						}
-					},
-					{
-						"type": "bubble",
-						"body": {
-							"type": "box",
-							"layout": "vertical",
-							"contents": [
-								{
-									"type": "text",
-									"text": "Second bubble"
-								}
-							]
+					]
+				}
+			},
+			{
+				"type": "bubble",
+				"body": {
+					"type": "box",
+					"layout": "vertical",
+					"contents": [
+						{
+							"type": "text",
+							"text": "Second bubble"
 						}
-					}
-				]
+					]
+				}
 			}
-		}
-	]
+		]
+	}
 }
 
 function replyMessage(event) {
@@ -81,18 +77,15 @@ function replyMessage(event) {
 			response += "\nCONGRATULATIONS";
 			response += "\nANSWER HAS BEEN RENEWED";
 		}
-		event.reply({
-			type: 'location',
-			title: 'my location',
-			address: '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
-			latitude: 35.65910807942215,
-			longitude: 139.70372892916203
-		});
-		// .then((data)=>{console.log(data)})
-		// .catch((err)=>{console.log(err)});
+		event.reply(massgg)
+		.then((data)=>{console.log(data)})
+		.catch((err)=>{console.log(err)});
 	}
 	if (event.message.type == 'image') {
-		event.reply("窩看不懂");
+		// event.reply("窩看不懂");
+		event.reply(massgg)
+		.then((data)=>{console.log(data)})
+		.catch((err)=>{console.log(err)});
 	}
 }
 
