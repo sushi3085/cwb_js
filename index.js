@@ -48,9 +48,7 @@ function replyMessage(event) {
 		}
 		if (msg.length === 3) {
 			event.reply(MSGS.coffee);
-			users.push(event.source.userId)
-				.then(data=>{})
-				.catch(err => console.log(err));
+			users.push(event.source.userId);
 		}
 	}
 	if (event.message.type == 'image') {
@@ -60,7 +58,6 @@ function replyMessage(event) {
 			.catch((err) => { console.log(err) });
 	}
 	console.log(event.source.userId);//
-	bot.push(event.source.userId)
 }
 
 function initBot() {
@@ -85,7 +82,9 @@ function _getJSON() {
 		if (--sixtyMinCountDown === 0) {
 			sixtyMinCountDown = 30;
 			users.forEach(e => {
-				bot.push(e, result);
+				bot.push(e, result)
+				.then(data=>{})
+				.catch(err=>{console.log(err)});
 			});
 		}
 	});
