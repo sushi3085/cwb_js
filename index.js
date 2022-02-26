@@ -100,7 +100,8 @@ function replyMessage(event) {
 				]
 			}
 		}
-		event.reply([response, "aaaa", massgg]);
+		await event.reply([response, "aaaa", massgg]);
+		event.reply(["STAR","STARS"]);
 	}
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
