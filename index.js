@@ -15,7 +15,7 @@ const linebotParser = bot.parser();
 var timer; // interval object in order to count down;
 var answer = 00;
 
-var sixtyMinCountDown = 1;
+var sixtyMinCountDown = 2;
 var users = []
 
 
@@ -49,7 +49,7 @@ function replyMessage(event) {
 		if (msg.length === 3) {
 			event.reply(MSGS.coffee);
 			users.push(event.source.userId)
-				.then()
+				.then(data=>{})
 				.catch(err => console.log(err));
 		}
 	}
