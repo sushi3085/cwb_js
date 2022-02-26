@@ -81,26 +81,15 @@ async function replyMessage(event) {
 			response += "\nCONGRATULATIONS";
 			response += "\nANSWER HAS BEEN RENEWED";
 		}
-		// item
-		response = {
-			type: "bubble", // ①
-			body: { // ②
-				type: "box", // ③
-				layout: "horizontal", // ④
-				contents: [ // ⑤
-					{
-						type: "text", // ⑥
-						text: "Hello,"
-					},
-					{
-						type: "text", // ⑥
-						text: "World!"
-					}
-				]
-			}
-		}
-		await event.reply([response, "aaaa", massgg]);
-		event.reply(["STAR","STARS"]);
+		await event.reply(["aaaa", "massgg"]);
+		await event.reply(["STAR", "STARS"]);
+		event.reply({
+			type: 'location',
+			title: 'my location',
+			address: '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
+			latitude: 35.65910807942215,
+			longitude: 139.70372892916203
+		});
 	}
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
