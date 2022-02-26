@@ -54,7 +54,7 @@ var massgg = {
 	]
 }
 
-async function replyMessage(event) {
+function replyMessage(event) {
 	// 將文字與影像訊息分開處理
 	// console.log(event); //把收到訊息的 event 印出來看看
 	if (event.message.type == 'text') {
@@ -81,15 +81,15 @@ async function replyMessage(event) {
 			response += "\nCONGRATULATIONS";
 			response += "\nANSWER HAS BEEN RENEWED";
 		}
-		await event.reply(["aaaa", "massgg"]);
-		await event.reply(["STAR", "STARS"]);
 		event.reply({
 			type: 'location',
 			title: 'my location',
 			address: '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
 			latitude: 35.65910807942215,
 			longitude: 139.70372892916203
-		});
+		})
+		.then((data)=>{console.log(data)})
+		.catch((err)=>{console.log(err)});
 	}
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
