@@ -14,6 +14,47 @@ const linebotParser = bot.parser();
 var timer; // interval object in order to count down;
 var answer = 00;
 
+var massgg = {
+	"replyToken": event.reply_token,
+	"messages": [
+		{
+			"type": "flex",
+			"altText": "Flex Message",
+			"contents": {
+				"type": "carousel",
+				"contents": [
+					{
+						"type": "bubble",
+						"body": {
+							"type": "box",
+							"layout": "vertical",
+							"contents": [
+								{
+									"type": "text",
+									"text": "First bubble"
+								}
+							]
+						}
+					},
+					{
+						"type": "bubble",
+						"body": {
+							"type": "box",
+							"layout": "vertical",
+							"contents": [
+								{
+									"type": "text",
+									"text": "Second bubble"
+								}
+							]
+						}
+					}
+				]
+			}
+		}
+	]
+}
+
 function replyMessage(event) {
 	// 將文字與影像訊息分開處理
 	// console.log(event); //把收到訊息的 event 印出來看看
@@ -44,23 +85,23 @@ function replyMessage(event) {
 		}
 		// item
 		response = {
-			"type": "bubble", // ①
-			"body": { // ②
-				"type": "box", // ③
-				"layout": "horizontal", // ④
-				"contents": [ // ⑤
+			type: "bubble", // ①
+			body: { // ②
+				type: "box", // ③
+				layout: "horizontal", // ④
+				contents: [ // ⑤
 					{
-						"type": "text", // ⑥
-						"text": "Hello,"
+						type: "text", // ⑥
+						text: "Hello,"
 					},
 					{
-						"type": "text", // ⑥
-						"text": "World!"
+						type: "text", // ⑥
+						text: "World!"
 					}
 				]
 			}
 		}
-		event.reply(['asdasa','alsksjjsjsjjj']);
+		event.reply([response, "aaaa", massgg]);
 	}
 	if (event.message.type == 'image') {
 		event.reply("窩看不懂");
