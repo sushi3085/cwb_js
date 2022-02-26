@@ -71,8 +71,9 @@ function _getJSON() {
 		// 	pm[i][1] = e['PM2.5'] * 1;
 		// 	pm[i][2] = e.PM10 * 1;
 		// });
-		console.log(response);
-		console.log(error);
+		let records = response['records'];
+		console.log(records['weatherElement']['time']['dateTime']);
+		console.log("嘉義市	西區北新里海口寮路56號= "+records['location']['value']);
 	});
 	timer = setInterval(_getJSON, 1 * 60 * 1000); //每半小時抓取一次新資料
 }
