@@ -54,7 +54,7 @@ var massgg = {
 	]
 }
 
-function replyMessage(event) {
+async function replyMessage(event) {
 	// 將文字與影像訊息分開處理
 	// console.log(event); //把收到訊息的 event 印出來看看
 	if (event.message.type == 'text') {
@@ -69,7 +69,6 @@ function replyMessage(event) {
 		// 	});
 		let A = 0;
 		let B = 0;
-		console.log(msg.length);
 		if (msg.length == 2) {
 			if (msg[0] == answer[0]) A++;
 			if (msg[0] == answer[1]) B++;
