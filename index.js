@@ -15,6 +15,9 @@ const linebotParser = bot.parser();
 var timer; // interval object in order to count down;
 var answer = 00;
 
+var sixtyMinCountDown = 60;
+var users = []
+
 
 function replyMessage(event) {
 	// 將文字與影像訊息分開處理
@@ -43,9 +46,10 @@ function replyMessage(event) {
 			response += "\nCONGRATULATIONS";
 			response += "\nANSWER HAS BEEN RENEWED";
 		}
-		event.reply(MSGS.coffee)
-			.then((data) => { console.log(data) })
-			.catch((err) => { console.log(err) });
+		if(msg.length === 3){
+			event.reply(MSGS.coffee);
+			users.push(event.source.userId);
+		}
 	}
 	if (event.message.type == 'image') {
 		// event.reply("窩看不懂");
@@ -53,6 +57,8 @@ function replyMessage(event) {
 			.then((data) => { console.log(data) })
 			.catch((err) => { console.log(err) });
 	}
+	console.log(event.source.userId);//
+	bot.push(event.source.userId)
 }
 
 function initBot() {
@@ -72,8 +78,14 @@ function _getJSON() {
 		// 	pm[i][2] = e.PM10 * 1;
 		// });
 		let records = response['records'];
-		console.log(records['weatherElement']['time']['dateTime']);
-		console.log("嘉義市	西區北新里海口寮路56號= "+records['weatherElement']['location'][0]['value']);
+		let result = records['weatherElement']['time']['dataTime']+"嘉義市	西區北新里海口寮路56號= "+records['weatherElement']['location'][0]['value']+", locationCode:"+records['weatherElement']['location'][0]['locationCode'];
+		console.log(result);
+		if(--sixtyMinCountDown === 0){
+			sixtyMinCountDown = 60;
+			users.forEach(e =>{
+				bot.push(e, result);
+			});
+		}
 	});
 	timer = setInterval(_getJSON, 1 * 60 * 1000); //每半小時抓取一次新資料
 }

@@ -8,6 +8,6 @@ getJSON('https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0005-001?Authoriza
     // 	pm[i][2] = e.PM10 * 1;
     // });
     let records = response['records'];
-    console.log(records['weatherElement']['time']['dateTime']);
-    console.log("嘉義市	西區北新里海口寮路56號= " + records['weatherElement']['location'][0]['value']);
+    console.log(records['weatherElement']['time']['dataTime']);
+    // console.log("嘉義市	西區北新里海口寮路56號= " + records['weatherElement']['location'][0]['value']);
 });
