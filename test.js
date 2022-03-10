@@ -40,7 +40,7 @@ async function maniData(){
 	await getJSON(url, function(error, response){
 		data = response;
 	});
-	let originalContent = fs.readFileSync('datas', 'utf8');
+	let originalContent = fs.readFileSync('datas');
 	fs.writeFileSync('datas', originalContent+(data['records']['weatherElement']['location'][0]['value'])+"\n");
 
 	setTimeout(maniData, 2000);
