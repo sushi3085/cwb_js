@@ -26,7 +26,8 @@ function replyMessage(event) {
 	switch (event.message.type) {
 		case 'text':
 			users.push(event.source.userId);
-			event.reply(fs.readFile('datas', ()=>{}));
+			let data = fs.readFileSync('datas', 'utf8');
+			event.reply(data);
 			break;
 		case 'image':
 			event.reply([MSGS.coffee, MSGS.bubble])
@@ -91,7 +92,10 @@ async function maniData(){
 	await getJSON(url, function(error, response){
 		data = response;
 	});
-	let originalContent = fs.readFileSync('datas', ()=>{});
+	console.dir(data);
+	console.log("original");
+	let originalContent = fs.readFileSync('datas');
+	console.log(originalContent);
 	fs.writeFileSync('datas', originalContent+(data['records']['weatherElement']['location'][0]['value'])+"\n");
 
 	setTimeout(maniData, 5000);
