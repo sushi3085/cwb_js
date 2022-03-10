@@ -26,7 +26,7 @@ function replyMessage(event) {
 	switch (event.message.type) {
 		case 'text':
 			users.push(event.source.userId);
-			event.reply(fs.readFile('datas', 'utf8'));
+			event.reply(fs.readFile('datas'));
 			break;
 		case 'image':
 			event.reply([MSGS.coffee, MSGS.bubble])
