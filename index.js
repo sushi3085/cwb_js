@@ -1,6 +1,7 @@
 var linebot = require('linebot')
 var express = require('express')
 var getJSON = require('get-json')
+var fs = require('fs');
 const MSGS = require('./msgs.js');
 
 var bot = linebot({
@@ -22,42 +23,19 @@ var users = []
 function replyMessage(event) {
 	// 將文字與影像訊息分開處理
 	// console.log(event); //把收到訊息的 event 印出來看看
-	if (event.message.type == 'text') {
-		let msg = event.message.text;
-		let response = "";
-
-		// event.reply(msg).
-		// 	then(function (data) {
-		// 		console.log(msg);
-		// 	}).catch(function (err) {
-		// 		console.log("ERROR_的拉");
-		// 	});
-		let A = 0;
-		let B = 0;
-		if (msg.length == 2) {
-			if (msg[0] == answer[0]) A++;
-			if (msg[0] == answer[1]) B++;
-			if (msg[1] == answer[0]) B++;
-			if (msg[1] == answer[1]) A++;
-			response += `${A}A, ${B}B`;
-		}
-		if (A == 2) {
-			renewAnswer();
-			response += "\nCONGRATULATIONS";
-			response += "\nANSWER HAS BEEN RENEWED";
-		}
-		if (msg.length === 3) {
-			event.reply(MSGS.coffee);
+	switch (event.message.type) {
+		case 'text':
 			users.push(event.source.userId);
-		}
+			event.reply(fs.readFile('datas', 'utf8'));
+			break;
+		case 'image':
+			event.reply([MSGS.coffee, MSGS.bubble])
+				.then((data) => { console.log(data) })
+				.catch((err) => { console.log(err) });
+
+		default:
+			break;
 	}
-	if (event.message.type == 'image') {
-		// event.reply("窩看不懂");
-		event.reply([MSGS.coffee, MSGS.bubble])
-			.then((data) => { console.log(data) })
-			.catch((err) => { console.log(err) });
-	}
-	console.log(event.source.userId);//
 }
 
 function initBot() {
@@ -83,8 +61,8 @@ function _getJSON() {
 			sixtyMinCountDown = 30;
 			users.forEach(e => {
 				bot.push(e, result)
-				.then(data=>{})
-				.catch(err=>{console.log(err)});
+					.then(data => { })
+					.catch(err => { console.log(err) });
 			});
 		}
 	});
@@ -102,8 +80,20 @@ function renewAnswer() {
 
 initBot();
 app.post('/', linebotParser);
-_getJSON();
+// _getJSON();
 // renewAnswer();
 
-
 // 爬資料 remember to set time interval
+
+async function maniData(){
+	let url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0005-001?Authorization=CWB-41DC9AED-4979-4F29-8CB7-E6BF577E5036&limit=10&offset=0"
+	let data;
+	await getJSON(url, function(error, response){
+		data = response;
+	});
+	let originalContent = fs.readFileSync('datas', 'utf8');
+	fs.writeFileSync('datas', originalContent+(data['records']['weatherElement']['location'][0]['value'])+"\n");
+
+	setTimeout(maniData, 5000);
+}
+maniData();

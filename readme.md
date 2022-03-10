@@ -108,3 +108,6 @@ bot.on('message', dealwithMessage);
 // 辛苦了 自學都很累
 ```
 
+2022/02/28更
+誒剛好看到一個，記一下
+[Closure (computer programming) - Wikipedia](https://en.wikipedia.org/wiki/Closure_(computer_programming))
