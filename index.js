@@ -24,7 +24,7 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
 });
 
 client.query('CREATE TABLE WFWFWFWFWFWFWFWFWFWFWF ( FAQ int );', (err, res)=>{
-	if(err) throw err;
+	// if(err) throw err;
 	console.log(res);
 	client.end();
 })
