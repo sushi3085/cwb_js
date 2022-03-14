@@ -22,21 +22,21 @@ client.query('SELECT * FROM user_mappings;', (err, res) => {
 	client.end();
 });
 
-client.query('ALTER TABLE table_name ADD WTF varchar(255);', (err, res) => {
-	// if (err) throw err;
-	for (let row of res.rows) {
-		console.log(JSON.stringify(row));
-	}
-	client.end();
-});
+// client.query('ALTER TABLE table_name ADD WTF varchar(255);', (err, res) => {
+// 	// if (err) throw err;
+// 	for (let row of res.rows) {
+// 		console.log(JSON.stringify(row));
+// 	}
+// 	client.end();
+// });
 
-client.query('SELECT table_name FROM information_schema.tables;', (err, res) => {
-	// if(err) throw err;
-	for (let row of res.rows) {
-		console.log(JSON.stringify(row));
-	}
-	client.end();
-});
+// client.query('SELECT table_name FROM information_schema.tables;', (err, res) => {
+// 	// if(err) throw err;
+// 	for (let row of res.rows) {
+// 		console.log(JSON.stringify(row));
+// 	}
+// 	client.end();
+// });
 
 ////////////////////////
 
