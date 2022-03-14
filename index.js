@@ -15,23 +15,34 @@ const client = new Client({
 
 client.connect();
 
-// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-// 	if (err) throw err;
-// 	for (let row of res.rows) {
-// 		// console.log(JSON.stringify(row));
-// 	}
-// 	client.end();
-// });
-
-client.query('SELECT WFWFWFWFWFWFWFWFWFWFWF FROM information_schema.tables;', (err, res)=>{
-	// if(err) throw err;
-	console.log(res);
+client.query('SELECT table_name FROM information_schema.tables;', (err, res) => {
+	if (err) throw err;
+	for (let row of res.rows) {
+		console.log(JSON.stringify(row));
+	}
 	client.end();
-})
+});
+
+client.query('ALTER TABLE table_name ADD WTF varchar(255);', (err, res) => {
+	if (err) throw err;
+	for (let row of res.rows) {
+		console.log(JSON.stringify(row));
+	}
+	client.end();
+});
+
+client.query('SELECT table_name FROM information_schema.tables;', (err, res) => {
+	// if(err) throw err;
+	for (let row of res.rows) {
+		console.log(JSON.stringify(row));
+	}
+	client.end();
+});
 
 ////////////////////////
 
 const { Pool } = require('pg');
+const res = require('express/lib/response');
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
 	ssl: {
