@@ -24,7 +24,7 @@ client.query('SELECT table_name FROM information_schema.tables;', (err, res) => 
 });
 
 client.query('ALTER TABLE table_name ADD WTF varchar(255);', (err, res) => {
-	if (err) throw err;
+	// if (err) throw err;
 	for (let row of res.rows) {
 		console.log(JSON.stringify(row));
 	}
