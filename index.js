@@ -3,6 +3,29 @@ var express = require('express')
 var getJSON = require('get-json')
 var fs = require('fs');
 const MSGS = require('./msgs.js');
+const { Client } = require('pg');
+
+// database
+const client = new Client({
+	connectionString: process.env.DATABASE_URL,
+	ssl: {
+		rejectUnauthorized: false
+	}
+});
+
+client.connect();
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+	if (err) throw err;
+	for (let row of res.rows) {
+		console.log(JSON.stringify(row));
+	}
+	client.end();
+});
+
+
+// bot
+
 
 var bot = linebot({
 	"channelId": "1656918423",
@@ -86,18 +109,18 @@ app.post('/', linebotParser);
 
 // 爬資料 remember to set time interval
 
-async function maniData(){
+async function maniData() {
 	let url = "https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0005-001?Authorization=CWB-41DC9AED-4979-4F29-8CB7-E6BF577E5036&limit=10&offset=0"
 	let data;
-	await getJSON(url, function(error, response){
+	await getJSON(url, function (error, response) {
 		data = response;
 	});
-	console.dir(data);
-	console.log("original");
+	// console.dir(data);
+	// console.log("original");
 	let originalContent = fs.readFileSync('datas');
-	console.log(originalContent);
-	fs.writeFileSync('datas', originalContent+(data['records']['weatherElement']['location'][0]['value'])+"\n");
+	// console.log(originalContent);
+	fs.writeFileSync('datas', originalContent + (data['records']['weatherElement']['location'][0]['value']) + "\n");
 
 	setTimeout(maniData, 5000);
 }
-maniData();
+// maniData();

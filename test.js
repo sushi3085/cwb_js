@@ -45,4 +45,11 @@ async function maniData(){
 
 	setTimeout(maniData, 2000);
 }
-maniData();
+// maniData();
+
+var radar = require('./getRADAR.js')
+
+console.log(radar.getXY('121 24.296', '24 38.189'))
+console.log(radar.getXY('121 24.256', '24 37.57'))
+console.log(radar.getXY('121 25.086', '24 38.153'))
+console.log(radar.getXY('121 25.097', '24 37.557'))
