@@ -3,52 +3,9 @@ var express = require('express')
 var getJSON = require('get-json')
 var fs = require('fs');
 const MSGS = require('./msgs.js');
-const { Client } = require('pg');
+// const { Client } = require('pg');
 
 // database
-const client = new Client({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false
-	}
-});
-
-client.connect();
-
-client.query('SELECT * FROM user_mappings;', (err, res) => {
-	// if (err) throw err;
-	console.log(JSON.stringify(res));
-	
-	client.end();
-});
-
-// client.query('ALTER TABLE table_name ADD WTF varchar(255);', (err, res) => {
-// 	// if (err) throw err;
-// 	for (let row of res.rows) {
-// 		console.log(JSON.stringify(row));
-// 	}
-// 	client.end();
-// });
-
-// client.query('SELECT table_name FROM information_schema.tables;', (err, res) => {
-// 	// if(err) throw err;
-// 	for (let row of res.rows) {
-// 		console.log(JSON.stringify(row));
-// 	}
-// 	client.end();
-// });
-
-////////////////////////
-
-const { Pool } = require('pg');
-const res = require('express/lib/response');
-const pool = new Pool({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false
-	}
-});
-
 
 // bot
 
@@ -150,3 +107,11 @@ async function maniData() {
 	setTimeout(maniData, 5000);
 }
 // maniData();
+
+function wakeUp(){
+	getJSON("https://cwb-js-test.herokuapp.com/", (err, response)=>{
+		console.log("wake up bob!");
+	});
+	setTimeout(wakeUp, 28*60*1000);
+}
+wakeUp()
