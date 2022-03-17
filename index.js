@@ -108,10 +108,18 @@ async function maniData() {
 }
 // maniData();
 
-function wakeUp(){
-	getJSON("https://cwb-js-test.herokuapp.com/", (err, response)=>{
-		console.log("wake up bob!");
-	});
-	setTimeout(wakeUp, 28*60*1000);
+function wakeUp()
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://cwb-js-test.herokuapp.com/", false ); // false for synchronous request
+    xmlHttp.send( null );
+    // return xmlHttp.responseText;
+	setTimeout(wakeUp, 10*1000);
 }
+// function wakeUp(){
+// 	getJSON("https://cwb-js-test.herokuapp.com/", (err, response)=>{
+// 		console.log("wake up bob!");
+// 	});
+// 	setTimeout(wakeUp, 28*60*1000);
+// }
 wakeUp()
