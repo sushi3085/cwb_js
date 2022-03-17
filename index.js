@@ -3,6 +3,7 @@ var express = require('express')
 var getJSON = require('get-json')
 var fs = require('fs');
 const MSGS = require('./msgs.js');
+import fetch from 'node-fetch';
 // const { Client } = require('pg');
 
 // database
