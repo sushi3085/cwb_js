@@ -3,7 +3,6 @@ var express = require('express')
 var getJSON = require('get-json')
 var fs = require('fs');
 const MSGS = require('./msgs.js');
-var fetch  = require('node-fetch');
 // const { Client } = require('pg');
 
 // database
@@ -108,17 +107,3 @@ async function maniData() {
 	setTimeout(maniData, 5000);
 }
 // maniData();
-
-function wakeUp()
-{
-	fetch.fetch("https://cwb-js-test.herokuapp.com/");
-    // return xmlHttp.responseText;
-	setTimeout(wakeUp, 10*1000);
-}
-// function wakeUp(){
-// 	getJSON("https://cwb-js-test.herokuapp.com/", (err, response)=>{
-// 		console.log("wake up bob!");
-// 	});
-// 	setTimeout(wakeUp, 28*60*1000);
-// }
-wakeUp()
